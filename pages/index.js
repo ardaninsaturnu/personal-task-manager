@@ -5,7 +5,7 @@ import {Divider} from 'antd';
 import logos from '../public/images/defaultlogo.png';
 import InputComponent from "../components/InputComponent";
 import ListComponent from "../components/ListComponent";
-import Table from "../components/TableComponent";
+import TableComponent from "../components/TableComponent";
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
       <InputComponent/>
       <Divider/>
       <ListComponent/>
-      <Table/>
+      <TableComponent/>
     </div>
   )
 }

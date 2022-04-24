@@ -16,7 +16,7 @@ const columns = [
       else if( text === 'Regular' )
         return <Button style={{backgroundColor:'gold',color:'white'}}>{text}</Button>
       else
-        return <Button style={{backgroundColor:'turquoise',color:'white'}}>{text}</Button>
+        return <Button type={'primary'} style={{color:'white'}}>{text}</Button>
     }
   },
   {
