@@ -15,10 +15,10 @@ export default function InputComponent(){
        </div>
        <div style={{ width: '20%' }}>
          <Typography.Text type="secondary">Task priority</Typography.Text>
-         <Select defaultValue="lucy" style={{ display: 'block' }} listItemHeight={12}>
-           <Select.Option value="jack">Urgent</Select.Option>
-           <Select.Option value="lucy">Trivial</Select.Option>
-           <Select.Option value="Yiminghe">Regular</Select.Option>
+         <Select defaultValue="urgent" style={{ display: 'block' }} listItemHeight={12}>
+           <Select.Option value="urgent">Urgent</Select.Option>
+           <Select.Option value="regular">Regular</Select.Option>
+           <Select.Option value="trivial">Trivial</Select.Option>
          </Select>
        </div>
        <Button style={{ backgroundColor:'black',color:'white' }} size="large" icon={<PlusOutlined/>}>Primary Button</Button>
