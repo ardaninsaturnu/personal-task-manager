@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
 import {Divider} from 'antd';
 import logos from '../public/images/defaultlogo.png';
+import Index from "../components/InputComponent";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Image src={logos} width={80} height={80}/>
       </header>
       <Divider/>
+      <Index/>
     </div>
   )
 }
