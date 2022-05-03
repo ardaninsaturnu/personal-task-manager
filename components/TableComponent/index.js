@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {Table, Tag, Space, Button, Modal} from 'antd';
-import ModalComponent from "../ModalComponent";
 
 export default function TableComponent(){
   const columns = [
