@@ -1,7 +1,9 @@
 import {useState} from 'react';
-import {Table, Tag, Space, Button, Modal} from 'antd';
+import {Table, Space, Button, Modal} from 'antd';
+import {useSelector} from "react-redux";
 
 export default function TableComponent(){
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const columns = [
     {
       title: 'Name',
@@ -12,13 +14,13 @@ export default function TableComponent(){
       title: 'Priority',
       dataIndex: 'priority',
       key: 'priority',
-      render: text => {
-        if( text === 'Urgent' )
-          return <Button style={{backgroundColor:'crimson',color:'white'}} onClick={showModal}>{text}</Button>
-        else if( text === 'Regular' )
-          return <Button style={{backgroundColor:'gold',color:'white'}}>{text}</Button>
+      render: priority => {
+        if( priority === 1 )
+          return <Button style={{backgroundColor:'crimson',color:'white'}} onClick={showModal}>Urgent</Button>
+        else if( priority === 2 )
+          return <Button style={{backgroundColor:'gold',color:'white'}}>Regular</Button>
         else
-          return <Button type={'primary'} style={{color:'white'}}>{text}</Button>
+          return <Button type={'primary'} style={{color:'white'}}>Trivial</Button>
       }
     },
     {
@@ -33,25 +35,10 @@ export default function TableComponent(){
     },
   ];
 
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      priority: 'Urgent',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      priority: 'Trivial',
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      priority: 'Regular',
-    },
-  ];
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const taskData = useSelector(state => state.tasks );
+  const sortedData = Object.values(taskData).sort( (a,b) => {
+    return a.priority - b.priority
+  });
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -67,7 +54,7 @@ export default function TableComponent(){
 
   return (
     <>
-      <Table columns={columns} dataSource={data}/>
+      <Table columns={columns} dataSource={sortedData}/>
       <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 
       </Modal>
