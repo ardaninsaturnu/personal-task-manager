@@ -1,9 +1,10 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Table, Space, Button, Modal} from 'antd';
-import {useSelector} from "react-redux";
 
 export default function TableComponent(){
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [ localData, setLocalData ] = useState(null);
+
   const columns = [
     {
       title: 'Name',
@@ -35,12 +36,18 @@ export default function TableComponent(){
     },
   ];
 
-  const taskData = useSelector(state => state.tasks );
-  const sortedData = Object.values(taskData).sort( (a,b) => {
-    return a.priority - b.priority
-  });
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const data = JSON.parse(localStorage.getItem('task'));
+      const sortedData =  Object.values(data.tasks).sort( (a,b) => {
+          return a.priority - b.priority
+        })
+        setLocalData(sortedData);
+    }
+  },[localData]);
 
   const showModal = () => {
+    console.log(typeof localData,'arda')
     setIsModalVisible(true);
   };
 
@@ -54,9 +61,8 @@ export default function TableComponent(){
 
   return (
     <>
-      <Table columns={columns} dataSource={sortedData}/>
+      <Table columns={columns} dataSource={localData}/>
       <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-
       </Modal>
     </>
   )
